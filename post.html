@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>文章 - guan 博客</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Markdown 渲染库：marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body data-page="post">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">guan</a>
+        <nav class="nav" id="nav">
+          <a href="index.html#about">关于</a>
+          <a href="index.html#posts">文章</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="切换导航">
+          <span class="hamburger"></span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container post-container">
+      <article class="post">
+        <header class="post-header">
+          <p class="post-back"><a href="index.html">← 返回首页</a></p>
+          <h1 id="postTitle" class="post-title">加载中...</h1>
+          <div class="post-meta" id="postMeta"></div>
+          <div class="post-tags" id="postTags"></div>
+        </header>
+        <section id="postContent" class="post-content" aria-live="polite">
+          正在加载文章内容...
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">© <span id="year"></span> 名字 · 简洁博客</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

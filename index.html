@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>个人博客 - guan</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body data-page="index">
+		<header class="site-header">
+			<div class="container header-inner">
+				<a class="logo" href="#about">guan</a>
+				<nav class="nav" id="nav">
+					<a href="#about">关于</a>
+					<a href="#posts">文章</a>
+					<a href="#contact">联系</a>
+				</nav>
+				<button class="nav-toggle" id="navToggle" aria-label="切换导航">
+					<span class="hamburger"></span>
+				</button>
+				<button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+					<span class="theme-icon">
+						🌙
+					</span>
+				</button>
+			</div>
+		</header>
+
+		<main class="container">
+			<section id="about" class="intro">
+				<div class="avatar">G</div>
+				<div class="intro-text">
+					<h1>你好，我是 关</h1>
+					<p class="lead">喜欢豚鼠 / 写日记用</p>
+					<p class="meta">位于 — 东京 · 喜欢睡觉、大嘴吉与豚鼠</p>
+				</div>
+			</section>
+
+			<section id="posts" class="posts">
+				<h2>文章</h2>
+				<div class="post-filters">
+					<button class="tag-pill active" data-tag="all">全部</button>
+					<div id="tagList" class="tag-list"></div>
+				</div>
+				<div id="postList" class="post-list" aria-live="polite">
+					<!-- JS will populate posts here -->
+				</div>
+			</section>
+
+			<section id="contact" class="contact">
+				<h3>联系我</h3>
+				<p>邮箱：<a href="mailto:1515046922@qq.com">1515046922@qq.com</a></p>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container">© <span id="year"></span> 关 · 简洁博客</div>
+		</footer>
+
+		<script src="script.js"></script>
+	</body>
+</html>
+
