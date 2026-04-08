@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const page = document.body.dataset.page;
 	if (page === 'index') {
+		initProfile();
 		initIndexPage();
 	} else if (page === 'post') {
 		initPostPage();
@@ -55,6 +56,40 @@ function applyTheme(theme, root, icon){
 function fillYear(){
 	const yearEl = document.getElementById('year');
 	if(yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+// 加载个人资料（名字、简介、邮箱等）
+async function initProfile(){
+	try{
+		const res = await fetch('profile.json');
+		if(!res.ok) return; // 没有配置文件就用默认文案
+		const profile = await res.json();
+
+		const avatarEl = document.getElementById('avatar');
+		const nameEl = document.getElementById('displayName');
+		const leadEl = document.getElementById('introLead');
+		const metaEl = document.getElementById('introMeta');
+		const emailLink = document.getElementById('emailLink');
+
+		if(avatarEl && profile.avatar_text){
+			avatarEl.textContent = profile.avatar_text;
+		}
+		if(nameEl && profile.display_name){
+			nameEl.textContent = profile.display_name;
+		}
+		if(leadEl && profile.intro_lead){
+			leadEl.textContent = profile.intro_lead;
+		}
+		if(metaEl && profile.intro_meta){
+			metaEl.textContent = profile.intro_meta;
+		}
+		if(emailLink && profile.email){
+			emailLink.href = `mailto:${profile.email}`;
+			emailLink.textContent = profile.email;
+		}
+	}catch(e){
+		console.error('加载个人资料失败', e);
+	}
 }
 
 // 首页逻辑：加载文章列表 + 标签过滤

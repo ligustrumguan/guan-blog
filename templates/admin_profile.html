@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>编辑个人资料</h1>
+
+  <form method="post">
+    <label for="display_name">显示名称（首页大标题）</label>
+    <input type="text" id="display_name" name="display_name" value="{{ profile.display_name }}" />
+
+    <label for="avatar_text">头像字母（圆形头像中显示的字）</label>
+    <input type="text" id="avatar_text" name="avatar_text" value="{{ profile.avatar_text }}" />
+
+    <label for="intro_lead">简介第一行</label>
+    <input type="text" id="intro_lead" name="intro_lead" value="{{ profile.intro_lead }}" />
+
+    <label for="intro_meta">简介第二行（位置信息等）</label>
+    <input type="text" id="intro_meta" name="intro_meta" value="{{ profile.intro_meta }}" />
+
+    <label for="email">邮箱地址</label>
+    <input type="text" id="email" name="email" value="{{ profile.email }}" />
+
+    <p style="margin-top: 12px;">
+      <input type="submit" value="保存" />
+      <a href="{{ url_for('admin_index') }}" class="button secondary">返回文章列表</a>
+    </p>
+  </form>
+{% endblock %}
