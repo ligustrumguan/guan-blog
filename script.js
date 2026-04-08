@@ -71,8 +71,17 @@ async function initProfile(){
 		const metaEl = document.getElementById('introMeta');
 		const emailLink = document.getElementById('emailLink');
 
-		if(avatarEl && profile.avatar_text){
-			avatarEl.textContent = profile.avatar_text;
+		if(avatarEl){
+			if(profile.avatar_url){
+				avatarEl.innerHTML = '';
+				const img = document.createElement('img');
+				img.src = profile.avatar_url;
+				img.alt = profile.display_name || 'avatar';
+				img.className = 'avatar-img';
+				avatarEl.appendChild(img);
+			}else if(profile.avatar_text){
+				avatarEl.textContent = profile.avatar_text;
+			}
 		}
 		if(nameEl && profile.display_name){
 			nameEl.textContent = profile.display_name;

@@ -6,12 +6,14 @@ from pathlib import Path
 from typing import Any
 
 from flask import Flask, flash, redirect, render_template, request, url_for
+from werkzeug.utils import secure_filename
 
 # 复用 new_post.py 里的工具和路径配置
 from new_post import POSTS_DIR, load_posts_json, save_posts_json, slugify
 
 BASE_DIR = Path(__file__).resolve().parent
 PROFILE_PATH = BASE_DIR / "profile.json"
+AVATAR_DIR = BASE_DIR / "static" / "avatars"
 
 app = Flask(__name__)
 # 本地使用的简单密钥，用于 flash 消息；如果对外部署请改成更安全的随机值
@@ -31,6 +33,7 @@ def default_profile() -> dict[str, str]:
     return {
         "display_name": "你好，我是 关",
         "avatar_text": "G",
+        "avatar_url": "",
         "intro_lead": "喜欢豚鼠 / 写日记用",
         "intro_meta": "位于 — 东京 · 喜欢睡觉、大嘴吉与豚鼠",
         "email": "1515046922@qq.com",
@@ -71,13 +74,26 @@ def admin_profile() -> str:
     if request.method == "POST":
         display_name = (request.form.get("display_name") or "").strip() or profile["display_name"]
         avatar_text = (request.form.get("avatar_text") or "").strip() or profile["avatar_text"]
+        avatar_url = (request.form.get("avatar_url") or "").strip() or profile.get("avatar_url", "")
         intro_lead = (request.form.get("intro_lead") or "").strip() or profile["intro_lead"]
         intro_meta = (request.form.get("intro_meta") or "").strip() or profile["intro_meta"]
         email = (request.form.get("email") or "").strip() or profile["email"]
 
+        # 处理头像文件上传：如果选择了新文件，则保存到 static/avatars 并覆盖 avatar_url
+        file = request.files.get("avatar_file")
+        if file and file.filename:
+            filename = secure_filename(file.filename)
+            if filename:
+                AVATAR_DIR.mkdir(parents=True, exist_ok=True)
+                save_path = AVATAR_DIR / filename
+                file.save(save_path)
+                # Flask 的静态文件默认挂载在 /static 下，前端用这个相对路径即可
+                avatar_url = f"static/avatars/{filename}"
+
         new_profile = {
             "display_name": display_name,
             "avatar_text": avatar_text,
+            "avatar_url": avatar_url,
             "intro_lead": intro_lead,
             "intro_meta": intro_meta,
             "email": email,

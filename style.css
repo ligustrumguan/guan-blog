@@ -100,7 +100,8 @@ body{
 .theme-icon{font-size:0.95rem;line-height:1}
 
 .intro{display:flex;gap:20px;align-items:center;padding:40px 0}
-.avatar{width:96px;height:96px;border-radius:24px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1120;font-size:32px;box-shadow:0 18px 40px rgba(15,23,42,0.25)}
+.avatar{width:96px;height:96px;border-radius:24px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1120;font-size:32px;box-shadow:0 18px 40px rgba(15,23,42,0.25);overflow:hidden}
+.avatar-img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
 .intro-text h1{margin:0 0 8px 0;font-size:1.7rem}
 .lead{margin:0 0 8px 0;color:var(--muted);max-width:36rem}
 .meta{color:var(--muted);margin-top:6px;font-size:0.95rem}

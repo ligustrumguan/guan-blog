@@ -3,12 +3,20 @@
 {% block content %}
   <h1>编辑个人资料</h1>
 
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     <label for="display_name">显示名称（首页大标题）</label>
     <input type="text" id="display_name" name="display_name" value="{{ profile.display_name }}" />
 
     <label for="avatar_text">头像字母（圆形头像中显示的字）</label>
     <input type="text" id="avatar_text" name="avatar_text" value="{{ profile.avatar_text }}" />
+
+  <label for="avatar_url">头像图片地址（可选，高级用法）</label>
+  <input type="text" id="avatar_url" name="avatar_url" value="{{ profile.avatar_url }}" />
+  <p style="font-size:12px;color:#6b7280;margin-top:4px;">一般情况下你可以直接在下面上传头像文件，不需要手动填写路径。</p>
+
+  <label for="avatar_file">上传头像图片（推荐）</label>
+  <input type="file" id="avatar_file" name="avatar_file" accept="image/*" capture="user" />
+  <p style="font-size:12px;color:#6b7280;margin-top:4px;">在手机上可以直接拍照或从相册选择；在电脑上可以从本地选择一张图片。</p>
 
     <label for="intro_lead">简介第一行</label>
     <input type="text" id="intro_lead" name="intro_lead" value="{{ profile.intro_lead }}" />
